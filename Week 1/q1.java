@@ -1,29 +1,27 @@
-public class q1 {
+import java.util.*;
 
-    static void checkDuplicateSeats(int[] seatNumbers) {
+public class Q1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-        boolean foundDuplicate = false;
+        int n = sc.nextInt();
+        int[] seats = new int[n];
 
-        for (int i = 0; i < seatNumbers.length - 1; i++) {
+        for (int i = 0; i < n; i++) {
+            seats[i] = sc.nextInt();
+        }
 
-            for (int j = i + 1; j < seatNumbers.length; j++) {
+        Set<Integer> seen = new HashSet<>();
+        boolean duplicate = false;
 
-                if (seatNumbers[i] == seatNumbers[j]) {
-                    System.out.println("Duplicate Seat Number Found: " + seatNumbers[i]);
-                    foundDuplicate = true;
-                }
+        for (int seat : seats) {
+            if (!seen.add(seat)) {
+                duplicate = true;
+                break;
             }
         }
 
-        if (!foundDuplicate) {
-            System.out.println("No Duplicate Seats Found");
-        }
-    }
-
-    public static void main(String[] args) {
-
-        int[] seatNumbers = {101, 102, 103, 102, 105};
-
-        checkDuplicateSeats(seatNumbers);
+        System.out.println(duplicate ? "Duplicate" : "No Duplicate");
+        sc.close();
     }
 }
